@@ -13,7 +13,7 @@ interface FormValues{
 
     sugestionRating: string;
     atendimentoAvaliation: string;
-    improvementSugestion: string;    
+    improvementSugestion?: string;    
 
 };
 
