@@ -32,23 +32,21 @@ export function Sugestion(props: SugestionFormProps){
 
     const searchParams = useSearchParams();
     
-    // ESTADO ÚNICO: Inicializamos com um valor de carregamento temporário.
     const [garcomName, setGarcomName] = useState("Carregando...");
     
-    // VARIÁVEL DE CONTROLE: Verifica se o nome já foi resolvido para "Não Informado" ou o nome real.
+    
     const isLoading = garcomName === "Carregando...";
     
-    // EFEITO: Roda SOMENTE na montagem inicial (lado do cliente).
-    // Usamos o 'eslint-disable' para evitar o aviso do linter sobre a dependência.
+    
     useEffect(() => {
-        // Acessamos o searchParams.get("s") aqui para capturar o valor da URL.
+        
         const garcomId = searchParams.get("s");
         const finalGarcomName = garcomId || "Não Informado";
         
-        // Atualiza o estado uma única vez após a montagem.
+        
         setGarcomName(finalGarcomName);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []); // Array de dependências vazio para rodar apenas uma vez.
+   
+    }, []); 
 
      const {register, handleSubmit, control, formState:{errors}} = useForm<FormValues>({
         resolver: zodResolver(formSchema)
@@ -57,7 +55,6 @@ export function Sugestion(props: SugestionFormProps){
     const garconInvalido = garcomName === "Não Informado";
 
     const onSubmit: SubmitHandler<FormValues> = (data) => {
-        // Usamos o estado 'garcomName' (que já está carregado) para o payload.
         if(garconInvalido){
 
             alert('Garçom não encontrado. Scaneie o Qr-Code do seu Garçom.');
