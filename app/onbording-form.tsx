@@ -31,10 +31,14 @@ export function OnbordingForm(){
     const router = useRouter();
 
     const goToNextStep = () => {
-        const nextStep = steps[step + 1];
-        router.push(`?step=${nextStep?.id ?? 'done'}`);
+    const nextStep = steps[step + 1];
+    const currentParams = new URLSearchParams(window.location.search);
 
-    }
+   
+    currentParams.set('step', nextStep?.id ?? 'done');
+
+    router.push(`?${currentParams.toString()}`);
+}
     
     
 
